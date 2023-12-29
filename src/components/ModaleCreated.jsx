@@ -11,7 +11,7 @@ export default function ModaleCreated({closeMoldal}) {
         <button className='absolute -top-2 -right-2 ' onClick={() => { closeMoldal(false)} }> 
           <FontAwesomeIcon className='w-8 h-8' icon={faCircleXmark} />
         </button>
-        <p className='font-bold text-xl'>Employee Created !</p>
+        <p className='font-bold text-xl'> Employee Created !</p>
     </div>
     </div>
   )
