@@ -32,6 +32,19 @@ export const HRnetForm = () => {
     const {register, control, handleSubmit, formState} = form 
     const {errors} = formState
 
+    const validateBirthDate = (value) => {
+        const age = CalculateAge(value)
+        return age >= 16 || "Age must be at least 16"
+    }
+    const validateStartDate = (value) =>{
+        const today = Date.now()// en Ms
+        const start = new Date(value).getTime()// en Ms
+        const birth = new Date(birthdate.value).getTime() + 504835200000 // ajouter 16 ans en Ms
+        if ( !(birth && start <= today && start > birth)){
+            return "start date must be after the 16 year" 
+        }  
+    }
+
     const OnSubmit = (dataOneEmployee)=>{
         console.log('dataOneEmployee ******', dataOneEmployee)
 
@@ -54,7 +67,7 @@ export const HRnetForm = () => {
                     <input {...register("firstname",{
                         required : "firstname is Required",
                         pattern : {
-                            value : /^[a-zA-Z]{3,}$/,
+                            value : /^[a-zA-Z -]{3,}$/,
                             message :"Invalid firstname format",
                         }
                     })} type="text" id="firstname" 
@@ -67,7 +80,7 @@ export const HRnetForm = () => {
                     <input {...register("lastname",{
                         required : "lastname is Required",
                         pattern : {
-                            value : /^[a-zA-Z]{3,}$/,
+                            value : /^[a-zA-Z -]{3,}$/,
                             message :"Invalid lastname format",
                         }
                     })} type="text" id="lastname" 
@@ -79,41 +92,18 @@ export const HRnetForm = () => {
                 <div className='flex flex-col'>
                     <input {...register("birthdate",{
                         required : "Birth Date is Required",
-                        onChange :(e) =>{
-                                        const age = CalculateAge(e.target.value)
-                                        // console.log(age)
-                                        if (age < 16){
-                                           ValideBirthDate = false
-                                           document.querySelector("#Err").innerHTML = "Age moins de 16 ans"
-                                        }
-                                        else {
-                                            ValideBirthDate = true
-                                            document.querySelector("#Err").innerHTML = ""
-                                        }
-                                        },
+                        validate: validateBirthDate
                     })} id="birthdate" type="date" className='border-2 border-emerald-600 rounded' />
-                    <span id="Err" className='text-rose-600'>{errors.birthdate?.message}</span>
+                    <span className='text-rose-600'>{errors.birthdate?.message}</span>
                 </div>
                
                 <label htmlFor="startdate">Start Date</label>
                 <div className='flex flex-col'>
                     <input {...register("startdate",{
                         required : "Start Date is Required",
-                        onChange : (e) => {
-                            const today = Date.now()// en Ms
-                            const start = new Date(startdate.value).getTime()// en Ms
-                            const birth = new Date(birthdate.value).getTime() + 504835200000 // ajouter 16 ans en Ms
-                            if(birth && start <= today && start > birth){
-                                 document.querySelector("#ErrS").innerHTML = ""
-                                 ValideStartDate = true
-                            }  
-                            else {
-                                document.querySelector("#ErrS").innerHTML = "Verifier Start date"
-                                ValideStartDate = false
-                            }
-                        }
+                        validate: validateStartDate
                     })} id="startdate" type="date" className='border-2 border-emerald-600 rounded' />
-                    <span id="ErrS" className='text-rose-600'>{errors.startdate?.message}</span>
+                    <span className='text-rose-600'>{errors.startdate?.message}</span>
                 </div>
                </div>
             <fieldset className='border-2 border-emerald-600 rounded'>
@@ -121,25 +111,43 @@ export const HRnetForm = () => {
                 <div className='grid grid-cols-4 gap-2 p-2'>
                     <label htmlFor="street">Street</label>
                     <div className='flex flex-col'>
-                        <input  {...register("street",{required : "Street is Required"})} id="street" type="text" className='border-2 border-emerald-600 rounded' />
+                        <input  {...register("street",{
+                            required : "Street is Required",
+                            pattern : {
+                                value : /^[a-zA-Z -]{3,}$/,
+                                message :"Invalid lastname format",
+                            },
+                    })} id="street" type="text" className='border-2 border-emerald-600 rounded' />
                         <span className='text-rose-600'>{errors.street?.message}</span>
                     </div>
                     <label htmlFor="city">City</label>
                     <div className='flex flex-col'>
-                        <input  {...register("city",{required : "City is Required"})} id="city" type="text" className='border-2 border-emerald-600 rounded'/>
+                        <input  {...register("city",{
+                            required : "City is Required",
+                            pattern : {
+                                value : /^[a-zA-Z -]{3,}$/,
+                                message :"Invalid lastname format",
+                            },
+                            })} id="city" type="text" className='border-2 border-emerald-600 rounded'/>
                         <span className='text-rose-600'>{errors.city?.message}</span>
                     </div>
                    
                     <label htmlFor="state">State</label>
                     <select  {...register("state")} id="state" className='border-2 border-emerald-600 rounded'>
                        {
-                         states.map (state => <option>{state.name}  </option>)
+                         states.map (state => <option key={state.abbreviation}>{state.name}  </option>)
                        }
                     </select>
 
                     <label htmlFor="zipcode">Zip Code</label>
                     <div className='flex flex-col'>
-                        <input  {...register("zipcode",{required : "ZipCode is Required"})} id="zipcode" type="number" className='border-2 border-emerald-600 rounded' />
+                        <input  {...register("zipcode",{
+                            required : "ZipCode is Required",
+                            pattern : {
+                                value : /^\d+$/,
+                                message :"Invalid lastname format",
+                            },
+                            })} id="zipcode" type="number" className='border-2 border-emerald-600 rounded' />
                         <span className='text-rose-600'>{errors.zipcode?.message}</span>
                     </div>
                 </div>
