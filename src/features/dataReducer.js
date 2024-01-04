@@ -12,7 +12,6 @@ export const dataSlice = createSlice({
     initialState : {employs : DataEmployee},
     reducers:{
         AddEmploys: (state, action)=>{
-            console.log(action)
             state.employs.push(action.payload)
         }
     },  
