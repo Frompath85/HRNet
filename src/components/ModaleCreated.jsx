@@ -1,8 +1,9 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 
-export default function ModaleCreated({closeMoldal}) {
+export default function ModaleCreated({closeMoldal,textModal, linkModal, linkTo}) {
   return (
     <div className='flex justify-center items-center '>
     <div className='bg-slate-100 opacity-80 w-screen h-screen fixed  top-0 right-0 '>  
@@ -11,7 +12,8 @@ export default function ModaleCreated({closeMoldal}) {
         <button className='absolute -top-2 -right-2 ' onClick={() => { closeMoldal(false)} }> 
           <FontAwesomeIcon className='w-8 h-8' icon={faCircleXmark} />
         </button>
-        <p className='font-bold text-xl'> Employee Created !</p>
+        <p className='font-bold text-2xl p-3'> {textModal} </p>
+        <Link className='p-3 justify-center flex text-emerald-800 font-bold ' to={linkTo}> {linkModal} </Link>
     </div>
     </div>
   )
