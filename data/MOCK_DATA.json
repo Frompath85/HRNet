@@ -96,5 +96,5 @@
 {"id":96,"firstname":"Rawley","lastname":"Crann","birthdate":"23/11/2010","startdate":"05/11/2023","street":"Evergreen","city":"Washington","state":"District of Columbia","zipcode":"20238","department":"Marketing"},
 {"id":97,"firstname":"Em","lastname":"Gerram","birthdate":"04/10/2011","startdate":"09/05/2018","street":"Almo","city":"Louisville","state":"Kentucky","zipcode":"40233","department":"Sales"},
 {"id":98,"firstname":"Callida","lastname":"Stourton","birthdate":"15/04/2015","startdate":"20/08/2016","street":"Dovetail","city":"Gastonia","state":"North Carolina","zipcode":"28055","department":"Engineering"},
-{"id":99,"firstname":"Arther","lastame":"Whenman","birthdate":"24/10/2019","startdate":"28/02/2020","street":"East","city":"Buffalo","state":"New York","zipcode":"14269","department":"Sales"},
-{"id":100,"firstname":"Jazmin","last_name":"Checchi","birthdate":"03/01/2007","startdate":"02/02/2016","street":"Merrick","city":"Anchorage","state":"Alaska","zipcode":"99522","department":"Human Resource"}]
+{"id":99,"firstname":"Arther","lastname":"Whenman","birthdate":"24/10/2019","startdate":"28/02/2020","street":"East","city":"Buffalo","state":"New York","zipcode":"14269","department":"Sales"},
+{"id":100,"firstname":"Jazmin","lastname":"Checchi","birthdate":"03/01/2007","startdate":"02/02/2016","street":"Merrick","city":"Anchorage","state":"Alaska","zipcode":"99522","department":"Human Resource"}]
