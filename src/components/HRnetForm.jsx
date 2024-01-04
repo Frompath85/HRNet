@@ -7,14 +7,13 @@ import { AddEmploys } from '../features/dataReducer'
 import ModaleCreated from './ModaleCreated'
 import states from '../../data/States.json'
 
+
 const CalculateAge = (dob) => {
     const BirthDate = new Date(dob)
     const DateDiffMs = Date.now() - BirthDate.getTime()
     const ageYear = new Date(DateDiffMs)
     return Math.abs(ageYear.getUTCFullYear() - 1970);
 }
-let ValideBirthDate = false
-let ValideStartDate = false
 
 export const HRnetForm = () => {
     const [openModal, setOpenModal] = useState(false )
@@ -29,9 +28,9 @@ export const HRnetForm = () => {
     // console.log(data)
 
     const form = useForm()
-    const {register, control, handleSubmit, formState} = form 
+    const {register, control, handleSubmit, formState, reset} = form 
     const {errors} = formState
-
+	
     const validateBirthDate = (value) => {
         const age = CalculateAge(value)
         return age >= 16 || "Age must be at least 16"
@@ -44,18 +43,22 @@ export const HRnetForm = () => {
             return "start date must be after the 16 year" 
         }  
     }
+    const changeFormat = (value) =>{
+        const myarray = value.split("-")
+        const year =myarray[0]
+        const month =myarray[1]
+        const day =myarray[2]   
+        return `${month}/${day}/${year}`    
+    }
 
     const OnSubmit = (dataOneEmployee)=>{
-        console.log('dataOneEmployee ******', dataOneEmployee)
-
-        // console.log(data.employs.length)//3 3+1
+        // console.log('dataOneEmployee ******', dataOneEmployee.birthdate)
+        dataOneEmployee.birthdate = changeFormat(dataOneEmployee.birthdate)
+        dataOneEmployee.startdate = changeFormat(dataOneEmployee.startdate)
         const arr = Object.assign(dataOneEmployee, {id : data.employs.length+1})
-        // console.log(arr)
-        if(ValideStartDate && ValideBirthDate){
-            dispatch(AddEmploys(arr))
-            setOpenModal(true)     
-        }
-
+        dispatch(AddEmploys(arr))
+        setOpenModal(true)
+        reset()
     }
 
   return (
@@ -92,7 +95,7 @@ export const HRnetForm = () => {
                 <div className='flex flex-col'>
                     <input {...register("birthdate",{
                         required : "Birth Date is Required",
-                        validate: validateBirthDate
+                        validate: validateBirthDate,      
                     })} id="birthdate" type="date" className='border-2 border-emerald-600 rounded' />
                     <span className='text-rose-600'>{errors.birthdate?.message}</span>
                 </div>
@@ -164,7 +167,10 @@ export const HRnetForm = () => {
             </div>  
             <button type='submit' className='w-24 p-2 bg-green-200'>Envoyer</button>
         </form>
-        {openModal && <ModaleCreated closeMoldal={setOpenModal}/> }
+        {openModal && <ModaleCreated closeMoldal={setOpenModal}
+                                     textModal="Employee Created !"
+                                     linkModal= "View Current Employees "
+                                     linkTo="EmployeeList"/> }
         <DevTool control={control}/>
     </div>
   )
