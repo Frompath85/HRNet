@@ -21,7 +21,12 @@ const ColumnsEmployee =[
     },
     {
         Header :'Start Date',
-        accessor :'startdate'
+        accessor :'startdate',
+        sortType: (rowA, rowB) => {
+            const dateA = new Date(rowA.values.startdate)
+            const dateB = new Date(rowB.values.startdate)
+            return dateA - dateB
+        }
     },
     {
         Header :'Department',
@@ -29,7 +34,12 @@ const ColumnsEmployee =[
     },
     {
         Header :'Date of Birth',
-        accessor :'birthdate'
+        accessor :'birthdate',
+        sortType: (rowA, rowB) => {
+            const dateA = new Date(rowA.values.birthdate)
+            const dateB = new Date(rowB.values.birthdate)
+            return dateA - dateB
+        }
     },
     {
         Header :'Street',
