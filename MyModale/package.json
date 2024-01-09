@@ -2,7 +2,7 @@
   "name": "mymodale",
   "version": "1.0.0",
   "description": "Modale Plugin for HRnet project ",
-  "main": "index.js",
+  "main": "ModaleHRNet.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
