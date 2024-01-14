@@ -2,10 +2,10 @@ import React from 'react'
 
 export default function GlobalFilter  ({filter, setFilter}){
   return (
-    <span>
-        Search : {' '}
-        <input className='border' type="text" value={filter ||''}
+    <div>
+        <label htmlFor="search"> Search : {' '}</label>
+        <input className='border' id="search" type="text" value={filter ||''}
          onChange={e => setFilter(e.target.value)}/>
-    </span>
+    </div>
   )
 }

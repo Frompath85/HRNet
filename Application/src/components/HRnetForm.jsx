@@ -4,26 +4,14 @@ import { useForm} from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
 import { useDispatch, useSelector } from 'react-redux'
 import { AddEmploys } from '../features/dataReducer'
-import ModaleCreated from './ModaleCreated'
 import states from '../../data/States.json'
+import {ModaleHRnet} from 'package-frompath'
 
-
-const CalculateAge = (dob) => {
-    const BirthDate = new Date(dob)
-    const DateDiffMs = Date.now() - BirthDate.getTime()
-    const ageYear = new Date(DateDiffMs)
-    return Math.abs(ageYear.getUTCFullYear() - 1970);
-}
 
 export const HRnetForm = () => {
     const [openModal, setOpenModal] = useState(false )
 
-    const dispatch = useDispatch()
-
-    // useEffect(()=>{
-    //     dispatch(getEmploys())
-    // },[dispatch])
-    
+    const dispatch = useDispatch()    
     const data = useSelector(state => state.data)
     // console.log(data)
 
@@ -31,6 +19,12 @@ export const HRnetForm = () => {
     const {register, control, handleSubmit, formState, reset} = form 
     const {errors} = formState
 	
+    const CalculateAge = (dob) => {
+        const BirthDate = new Date(dob)
+        const DateDiffMs = Date.now() - BirthDate.getTime()
+        const ageYear = new Date(DateDiffMs)
+        return Math.abs(ageYear.getUTCFullYear() - 1970);
+    }
     const validateBirthDate = (value) => {
         const age = CalculateAge(value)
         return age >= 16 || "Age must be at least 16"
@@ -50,7 +44,6 @@ export const HRnetForm = () => {
         const day =myarray[2]   
         return `${month}/${day}/${year}`    
     }
-
     const OnSubmit = (dataOneEmployee)=>{
         // console.log('dataOneEmployee ******', dataOneEmployee.birthdate)
         dataOneEmployee.birthdate = changeFormat(dataOneEmployee.birthdate)
@@ -164,10 +157,12 @@ export const HRnetForm = () => {
                     <option>Human Resources</option>
                     <option>Legal</option>
                 </select>
-            </div>  
-            <button type='submit' className='w-24 p-2 bg-green-200'>Envoyer</button>
+            </div> 
+            <div className='flex justify-center mt-4'>
+              <button type='submit' className='w-32 p-2 bg-green-100 border-2 border-emerald-600 rounded'>Envoyer</button>
+            </div> 
         </form>
-        {openModal && <ModaleCreated closeMoldal={setOpenModal}
+        {openModal && <ModaleHRnet closeMoldal={setOpenModal}
                                      textModal="Employee Created !"
                                      linkModal= "View Current Employees "
                                      linkTo="EmployeeList"/> }

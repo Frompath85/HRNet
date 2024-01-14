@@ -83,8 +83,8 @@ export default function EmployeeTable() {
     <div className='mt-4'>
       <div className='flex items-center gap-5 justify-between p-2'>
         <div>
-            <span>Show </span>
-            <select value={pageSize} onChange={e => setPageSize(Number(e.target.value))}>
+            <label htmlFor="size">Show </label>
+            <select id="size" value={pageSize} onChange={e => setPageSize(Number(e.target.value))}>
                 {   [10, 25, 50, 100].map(pageSize =>(
                         <option className='text-sm'  key={pageSize}>
                             {pageSize}
