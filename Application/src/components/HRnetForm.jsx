@@ -5,7 +5,7 @@ import { DevTool } from '@hookform/devtools'
 import { useDispatch, useSelector } from 'react-redux'
 import { AddEmploys } from '../features/dataReducer'
 import states from '../../data/States.json'
-import {ModaleHRnet} from 'package-frompath'
+import {ModaleHRnet} from 'modale-hrnet-frompath'
 
 
 export const HRnetForm = () => {
