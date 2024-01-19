@@ -1,24 +1,15 @@
 import React from 'react'
-import ImgLogo from "../assets/WH_logo.png";
-import { Link } from 'react-router-dom';
 import { HRnetForm } from '../components/HRnetForm.jsx';
+import { NavLink } from 'react-router-dom';
 
 export default function Home() {
   return (
     <>
-      <header className=' bg-green-100 p-2'>
-        <Link to='/' className='flex flex-row gap-3 items-center justify-center'>
-          <img  width="50" height="50" src={ImgLogo} alt="Logo HRNet" />
-          <h1 className='text-xl font-bold' > HRNet</h1>
-        </Link>    
-      </header>
-      <section className='flex flex-col gap-6 m-3'> 
-        <div className='flex flex-row bg-green-100 justify-between p-4'>
-          <h2 className='text-lg font-semibold'>Create Employee</h2>
-          <Link to='/EmployeeList' className='text-lg font-semibold underline underline-offset-4'>View Current Employees</Link>
-        </div>
-        <HRnetForm />
-      </section>
+      <div className='flex justify-between gap-6 ml-10 mr-10 mt-6 text-lg font-semibold'>
+        <h2>Create Employee</h2>
+        <NavLink to='/EmployeeList' className='underline underline-offset-4'> View current  Employees</NavLink>     
+      </div>
+      <HRnetForm />
     </>
   )
 }
