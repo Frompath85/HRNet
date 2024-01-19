@@ -1,11 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
 import { useForm} from 'react-hook-form'
-import { DevTool } from '@hookform/devtools'
 import { useDispatch, useSelector } from 'react-redux'
 import { AddEmploys } from '../features/dataReducer'
 import states from '../../data/States.json'
 import {ModaleHRnet} from 'modale-hrnet-frompath'
+
 
 
 export const HRnetForm = () => {
@@ -55,8 +55,8 @@ export const HRnetForm = () => {
     }
 
   return (
-    <div className='p-12 text-lg'>
-        <form onSubmit={handleSubmit(OnSubmit)} noValidate className='flex flex-col gap-3'>
+    <>
+        <form onSubmit={handleSubmit(OnSubmit)} noValidate className='p-12 text-lg flex flex-col gap-3'>
             <div className='grid grid-cols-2 gap-2'>
                 <label htmlFor="firstname">First Name</label>
                 <div className='flex flex-col'>
@@ -162,11 +162,10 @@ export const HRnetForm = () => {
               <button type='submit' className='w-32 p-2 bg-green-100 border-2 border-emerald-600 rounded'>Envoyer</button>
             </div> 
         </form>
-        {openModal && <ModaleHRnet closeMoldal={setOpenModal}
+        {openModal && <ModaleHRnet closeMoldal={setOpenModal} 
                                      textModal="Employee Created !"
                                      linkModal= "View Current Employees "
                                      linkTo="EmployeeList"/> }
-        <DevTool control={control}/>
-    </div>
+    </>
   )
 }
