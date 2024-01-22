@@ -81,20 +81,19 @@ export default function EmployeeTable() {
 
   return (
     <div className='mt-4'>
-      <div className='flex items-center gap-5 justify-between p-2'>
+      <div className='flex items-center gap-5 justify-between p-4 text-lg'>
         <div>
             <label htmlFor="size">Show </label>
-            <select id="size" value={pageSize} onChange={e => setPageSize(Number(e.target.value))}>
+            <select className='font-bold' id="size" value={pageSize} onChange={e => setPageSize(Number(e.target.value))}>
                 {   [10, 25, 50, 100].map(pageSize =>(
-                        <option className='text-sm'  key={pageSize}>
+                        <option key={pageSize}>
                             {pageSize}
                         </option>
                     ) )
                 }
             </select>
             <span> Entries </span>
-        </div>
-       
+        </div> 
         <GlobalFilter filter={globalFilter} setFilter = {setGlobalFilter} />
       </div>
       
@@ -128,19 +127,20 @@ export default function EmployeeTable() {
             })}
         </tbody>
       </table>
-      <div className='flex justify-center items-center'>
-        <button className = 'p-2  m-2 border rounded w-24' 
+
+      <div className='flex justify-center items-center p-4 text-lg'>
+        <button className = 'w-24 px-2 py-1 bg-green-100 border-2 border-emerald-600 rounded' 
                 onClick = {()=> previousPage()}
-                disabled = {!canPreviousPage} >previous</button>
+                disabled = {!canPreviousPage} >Previous</button>
         <span className='m-2'>
             page{' '}
             <strong>
                 {pageIndex + 1} of {pageOptions.length}
             </strong>
         </span>
-        <button className='p-2  m-2 border rounded w-24' 
+        <button className='w-24 px-2 py-1 bg-green-100 border-2 border-emerald-600 rounded' 
                 onClick={()=> nextPage()}
-                disabled = {!canNextPage} >next</button>
+                disabled = {!canNextPage} >Next</button>
       </div>
     </div>
   )
