@@ -7,11 +7,13 @@ export default function Home() {
   return (
     <> 
       <Header />
-      <div className='flex justify-between gap-6 ml-10 mr-10 mt-6 text-lg font-semibold'>
-        <h2>Create Employee</h2>
-        <NavLink to='/EmployeeList' className='underline underline-offset-4'> View current  Employees</NavLink>     
+      <div className='mx-16 my-6 '>
+        <div className='flex justify-between gap-6 mx-10 my-6 text-xl font-semibold'>
+          <h2>Create Employee</h2>
+          <NavLink to='/EmployeeList' className='text-emerald-600 underline underline-offset-4'> View Current  Employees</NavLink>     
+        </div>
+        <HRnetForm />
       </div>
-      <HRnetForm />
     </>
   )
 }
