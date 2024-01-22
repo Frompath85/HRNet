@@ -56,14 +56,14 @@ export const HRnetForm = () => {
 
   return (
     <>
-        <form onSubmit={handleSubmit(OnSubmit)} noValidate className='p-12 text-lg flex flex-col gap-3'>
+        <form onSubmit={handleSubmit(OnSubmit)} noValidate className='text-lg flex flex-col gap-3'>
             <div className='grid grid-cols-2 gap-2'>
                 <label htmlFor="firstname">First Name</label>
                 <div className='flex flex-col'>
                     <input {...register("firstname",{
                         required : "firstname is Required",
                         pattern : {
-                            value : /^[a-zA-Z -]{3,}$/,
+                            value : /^[a-zA-Z][a-zA-Z -]{2,}$/,
                             message :"Invalid firstname format",
                         }
                     })} type="text" id="firstname" 
@@ -76,7 +76,7 @@ export const HRnetForm = () => {
                     <input {...register("lastname",{
                         required : "lastname is Required",
                         pattern : {
-                            value : /^[a-zA-Z -]{3,}$/,
+                            value : /^[a-zA-Z][a-zA-Z -]{2,}$/,
                             message :"Invalid lastname format",
                         }
                     })} type="text" id="lastname" 
@@ -110,8 +110,8 @@ export const HRnetForm = () => {
                         <input  {...register("street",{
                             required : "Street is Required",
                             pattern : {
-                                value : /^[a-zA-Z -]{3,}$/,
-                                message :"Invalid lastname format",
+                                value : /^[a-zA-Z][a-zA-Z -]{2,}$/,
+                                message :"Invalid Street format",
                             },
                     })} id="street" type="text" className='border-2 border-emerald-600 rounded' />
                         <span className='text-rose-600'>{errors.street?.message}</span>
@@ -121,8 +121,8 @@ export const HRnetForm = () => {
                         <input  {...register("city",{
                             required : "City is Required",
                             pattern : {
-                                value : /^[a-zA-Z -]{3,}$/,
-                                message :"Invalid lastname format",
+                                value : /^[a-zA-Z][a-zA-Z -]{2,}$/,
+                                message :"Invalid City format",
                             },
                             })} id="city" type="text" className='border-2 border-emerald-600 rounded'/>
                         <span className='text-rose-600'>{errors.city?.message}</span>
@@ -140,8 +140,8 @@ export const HRnetForm = () => {
                         <input  {...register("zipcode",{
                             required : "ZipCode is Required",
                             pattern : {
-                                value : /^\d+$/,
-                                message :"Invalid lastname format",
+                                value : /^[0-9]+$/,
+                                message :"Invalid ZipCode format",
                             },
                             })} id="zipcode" type="number" className='border-2 border-emerald-600 rounded' />
                         <span className='text-rose-600'>{errors.zipcode?.message}</span>
@@ -159,7 +159,7 @@ export const HRnetForm = () => {
                 </select>
             </div> 
             <div className='flex justify-center mt-4'>
-              <button type='submit' className='w-32 p-2 bg-green-100 border-2 border-emerald-600 rounded'>Envoyer</button>
+              <button type='submit' className='w-32 p-2 bg-green-100 border-2 border-emerald-600 rounded'>Save</button>
             </div> 
         </form>
         {openModal && <ModaleHRnet closeMoldal={setOpenModal} 
