@@ -19,16 +19,19 @@ export const HRnetForm = () => {
     const {register, control, handleSubmit, formState, reset} = form 
     const {errors} = formState
 	
+    // calcul d'age
     const CalculateAge = (dob) => {
         const BirthDate = new Date(dob)
         const DateDiffMs = Date.now() - BirthDate.getTime()
         const ageYear = new Date(DateDiffMs)
         return Math.abs(ageYear.getUTCFullYear() - 1970);
     }
+    // valider l'age ou envoyer le message d'erreur a l'utilisateur
     const validateBirthDate = (value) => {
         const age = CalculateAge(value)
         return age >= 16 || "Age must be at least 16"
     }
+    // vérifier que la date de début doit être après 16 ans
     const validateStartDate = (value) =>{
         const today = Date.now()// en Ms
         const start = new Date(value).getTime()// en Ms
@@ -37,6 +40,7 @@ export const HRnetForm = () => {
             return "start date must be after the 16 year" 
         }  
     }
+    // changer le format de la date en mm/dd/yyyy
     const changeFormat = (value) =>{
         const myarray = value.split("-")
         const year =myarray[0]
@@ -44,8 +48,8 @@ export const HRnetForm = () => {
         const day =myarray[2]   
         return `${month}/${day}/${year}`    
     }
+    //enregistrer l'employée dans le store, afficher la modale et réinitialiser les champs
     const OnSubmit = (dataOneEmployee)=>{
-        // console.log('dataOneEmployee ******', dataOneEmployee.birthdate)
         dataOneEmployee.birthdate = changeFormat(dataOneEmployee.birthdate)
         dataOneEmployee.startdate = changeFormat(dataOneEmployee.startdate)
         const arr = Object.assign(dataOneEmployee, {id : data.employs.length+1})

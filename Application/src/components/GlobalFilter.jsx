@@ -1,6 +1,11 @@
+/**
+ * filtrer les employées selon le champ de recherche saisie 
+ * @param {string} filter
+ * @param {function} setFilter
+ */
 import React from 'react'
 
-export default function GlobalFilter  ({filter, setFilter}){
+export default function GlobalFilter ({filter, setFilter}){
   return (
     <div>
         <label htmlFor="search"> Search : {' '}</label>
